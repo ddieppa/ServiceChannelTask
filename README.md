@@ -9,6 +9,8 @@
 - Missing Unit Test project
 - Make use of the appsettings file, now I just put the url right there when injecting the Refit client
 - Create a better mapping solution to map the dtos
+- Add Logging
+- Add docker support
 
 ## Technical Requirements
 -  Written in C# (.Net Core 3.x preferred)
