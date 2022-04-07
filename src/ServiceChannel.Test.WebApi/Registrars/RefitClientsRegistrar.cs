@@ -8,7 +8,7 @@ namespace ServiceChannel.Test.WebApi.Registrars;
 
 public static class RefitClientsRegistrar
 {
-    public static IServiceCollection AddRefitClients(this IServiceCollection services)
+    public static IServiceCollection AddRefitClientsServices(this IServiceCollection services)
     {
         services.AddRefitClient<ICovid19RefitClient>(provider => new RefitSettings())
                .ConfigureHttpClient(c =>

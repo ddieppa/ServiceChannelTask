@@ -1,17 +1,11 @@
-using System.Net.Mime;
 using System.Reflection;
 
 using FluentValidation.AspNetCore;
 
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.ApiExplorer;
-using Microsoft.AspNetCore.Mvc.Versioning;
-
-using Refit;
 
 using Serilog;
 
-using ServiceChannel.Test.Infrastructure;
 using ServiceChannel.Test.WebApi.Registrars;
 
 Log.Logger = new LoggerConfiguration()
@@ -48,7 +42,7 @@ try
     // Application Project configuration
     builder.Services.AddApplicationServices();
     // Refit clients configuration
-    builder.Services.AddRefitClients();
+    builder.Services.AddRefitClientsServices();
     // Infrastructure Project configuration
     builder.Services.AddInfrastructureServices();
 
