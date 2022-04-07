@@ -2,7 +2,7 @@
 
 namespace ServiceChannel.Test.WebApi.Models.Requests;
 
-public class Covid19DataRequest
+public class Covid19DataFilterRequest
 {
     [JsonPropertyName("location")] public Location? Location { get; set; }
 

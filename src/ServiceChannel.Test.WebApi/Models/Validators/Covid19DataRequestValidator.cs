@@ -4,7 +4,7 @@ using ServiceChannel.Test.WebApi.Models.Requests;
 
 namespace ServiceChannel.Test.WebApi.Models.Validators;
 
-public class Covid19DataRequestValidator : AbstractValidator<Covid19DataRequest>
+public class Covid19DataRequestValidator : AbstractValidator<Covid19DataFilterRequest>
 {
     public Covid19DataRequestValidator()
     {
