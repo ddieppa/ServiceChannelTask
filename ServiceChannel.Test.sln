@@ -11,6 +11,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ServiceChannel.Test.Infrast
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ServiceChannel.Test.WebApi", "src\ServiceChannel.Test.WebApi\ServiceChannel.Test.WebApi.csproj", "{1B8170A6-C472-4AE0-99C8-78124BE98FBF}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ServiceChannel.Test.Application.UnitTests", "tests\ServiceChannel.Test.Application.UnitTests\ServiceChannel.Test.Application.UnitTests.csproj", "{CF0334CA-9735-43E5-8B9C-43D05A4EBFA9}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{78E5E954-C8BC-4CEB-AAC6-6099BA0EFFE6}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -37,6 +41,10 @@ Global
 		{1B8170A6-C472-4AE0-99C8-78124BE98FBF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1B8170A6-C472-4AE0-99C8-78124BE98FBF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1B8170A6-C472-4AE0-99C8-78124BE98FBF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CF0334CA-9735-43E5-8B9C-43D05A4EBFA9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CF0334CA-9735-43E5-8B9C-43D05A4EBFA9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CF0334CA-9735-43E5-8B9C-43D05A4EBFA9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CF0334CA-9735-43E5-8B9C-43D05A4EBFA9}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{1D6F8352-A091-422B-BEEA-BE3AAF365395} = {BF632155-9626-467A-83B8-C98C1C23008A}
@@ -44,5 +52,6 @@ Global
 		{EF67754C-3AE8-459F-8AC9-E6FAFB1001C6} = {BF632155-9626-467A-83B8-C98C1C23008A}
 		{574EDB13-5A3E-4149-A21C-840B2C78ADEF} = {BF632155-9626-467A-83B8-C98C1C23008A}
 		{1B8170A6-C472-4AE0-99C8-78124BE98FBF} = {BF632155-9626-467A-83B8-C98C1C23008A}
+		{CF0334CA-9735-43E5-8B9C-43D05A4EBFA9} = {78E5E954-C8BC-4CEB-AAC6-6099BA0EFFE6}
 	EndGlobalSection
 EndGlobal
