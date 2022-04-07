@@ -12,7 +12,7 @@ using Refit;
 using Serilog;
 
 using ServiceChannel.Test.Infrastructure;
-using ServiceChannel.Test.WebApi.Options;
+using ServiceChannel.Test.WebApi.Registrars;
 
 Log.Logger = new LoggerConfiguration()
              .WriteTo.Console()
@@ -30,47 +30,27 @@ try
 
 // Add services to the container.
 
-    builder.Services
-           .AddControllers()
-           .AddFluentValidation(options =>
-           {
-               options.ImplicitlyValidateChildProperties = true;
-               options.ImplicitlyValidateRootCollectionElements = true;
-               // Automatic registration of validators in assembly
-               options.RegisterValidatorsFromAssembly(Assembly.GetExecutingAssembly());
-           });
+    builder.Services.AddControllers();
 
-    // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
-    builder.Services.AddApiVersioning(options =>
+    // FluentValidation configuration
+    builder.Services.AddFluentValidation(options =>
     {
-        options.ReportApiVersions = true;
-        options.DefaultApiVersion = new ApiVersion(1,
-                                                   0);
-        options.AssumeDefaultVersionWhenUnspecified = true;
-        options.ApiVersionReader = new UrlSegmentApiVersionReader();
+        options.ImplicitlyValidateChildProperties = true;
+        options.ImplicitlyValidateRootCollectionElements = true;
+        // Automatic registration of validators in assembly
+        options.RegisterValidatorsFromAssembly(Assembly.GetExecutingAssembly());
     });
+    //ApiVersioning configuration
+    builder.Services.AddApiVersioningExplorer();
+    // Swagger configuration
+    builder.Services.AddSwagger();
 
-    builder.Services.AddVersionedApiExplorer(options =>
-    {
-        options.GroupNameFormat = "'v'VVV";
-        options.SubstituteApiVersionInUrl = true;
-    });
-    builder.Services.AddEndpointsApiExplorer();
-    builder.Services.AddSwaggerGen();
-    builder.Services.ConfigureOptions<ConfigureSwaggerOptions>();
-
-    builder.Services.AddTransient<ICovid19DataService, Covid19DataService>();
-    builder.Services.AddScoped<ICovid19HttpClient>(provider => provider.GetRequiredService<ICovid19RefitClient>());
-    builder.Services.AddRefitClient<ICovid19RefitClient>(provider => new RefitSettings())
-           .ConfigureHttpClient(c =>
-           {
-               c.BaseAddress =
-                   new
-                       Uri("https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_time_series");
-               c.DefaultRequestHeaders.Add("Accept",
-                                           MediaTypeNames.Application.Json);
-           });
-    builder.Services.AddTransient<ICsvHelper, ServiceChannel.Test.Infrastructure.CsvHelper>();
+    // Application Project configuration
+    builder.Services.AddApplicationServices();
+    // Refit clients configuration
+    builder.Services.AddRefitClients();
+    // Infrastructure Project configuration
+    builder.Services.AddInfrastructureServices();
 
     var app = builder.Build();
 
