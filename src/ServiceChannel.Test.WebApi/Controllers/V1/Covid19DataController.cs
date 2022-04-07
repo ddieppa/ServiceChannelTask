@@ -2,10 +2,12 @@ using Mapster;
 
 using Microsoft.AspNetCore.Mvc;
 
+using ServiceChannel.Test.WebApi.Constants;
+
 namespace ServiceChannel.Test.WebApi.Controllers.V1;
 
-[ApiVersion("1.0")]
-[Route("api/v{version:apiVersion}/[controller]")]
+[ApiVersion(ApiVersions.V1)]
+[Route(ApiRoutes.BaseRoute)]
 [ApiController]
 public class Covid19DataController : ControllerBase
 {
@@ -25,8 +27,8 @@ public class Covid19DataController : ControllerBase
     /// <param name="covid19DataFilterRequest"></param>
     /// <returns>Covid19 Data</returns>
     /// <response code="200">Covid19 Data</response>
-    [HttpPost("Data",
-                 Name = "GetCovid19DataAsync")]
+    [HttpPost(ApiRoutes.Covid19Data.County,
+                 Name = nameof(GetCovid19DataAsync))]
     [ProducesResponseType(StatusCodes.Status200OK,
                              Type = typeof(string))]
     [ProducesResponseType(StatusCodes.Status400BadRequest,
