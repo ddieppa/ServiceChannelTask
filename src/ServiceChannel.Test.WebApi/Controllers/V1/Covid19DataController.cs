@@ -2,22 +2,18 @@ using Mapster;
 
 using Microsoft.AspNetCore.Mvc;
 
-using ServiceChannel.Test.Application;
-using ServiceChannel.Test.Domain.Requests;
-using ServiceChannel.Test.WebApi.Models.Requests;
-using ServiceChannel.Test.WebApi.Models.Responses;
+namespace ServiceChannel.Test.WebApi.Controllers.V1;
 
-namespace ServiceChannel.Test.WebApi.Controllers;
-
-[Route("api/[controller]")]
+[ApiVersion("1.0")]
+[Route("api/v{version:apiVersion}/[controller]")]
 [ApiController]
-public class Covid19InformationController : ControllerBase
+public class Covid19DataController : ControllerBase
 {
     private readonly ICovid19DataService covid19DataService;
-    private readonly ILogger<Covid19InformationController> logger;
+    private readonly ILogger<Covid19DataController> logger;
 
-    public Covid19InformationController(ICovid19DataService covid19DataService,
-                                        ILogger<Covid19InformationController> logger)
+    public Covid19DataController(ICovid19DataService covid19DataService,
+                                        ILogger<Covid19DataController> logger)
     {
         this.covid19DataService = covid19DataService;
         this.logger = logger;
@@ -39,7 +35,8 @@ public class Covid19InformationController : ControllerBase
         [FromBody] Covid19DataFilterRequest covid19DataFilterRequest)
     {
         var filterDto = covid19DataFilterRequest.Adapt<Covid19DataFilterDto>();
-        this.logger.LogInformation("Calling Covid19 Data Service with filter: State:{State} && County: {County}",
+        this.logger.LogInformation("Calling {Service} with filter: State:{State} && County: {County}",
+                                   nameof(Covid19DataService),
                                    filterDto.Location.State,
                                    filterDto.Location.County);
         var resultDto = await this.covid19DataService.GetCovid19DataAsync(filterDto);
